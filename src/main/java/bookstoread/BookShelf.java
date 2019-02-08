@@ -40,10 +40,16 @@ public class BookShelf {
 
 	public Progress progress() {
 		int booksRead = Long.valueOf(books.stream().filter(Book::isRead).count()).intValue();
-		int booksToRead = books.size() - booksRead;
+		int booksInProgress = Long.valueOf(books.stream().filter(Book::isProgress).count()).intValue();
+		int booksToRead = books.size() - booksRead - booksInProgress;
 		int percentageCompleted = booksRead * 100 / books.size();
 		int percentageToRead = booksToRead * 100 / books.size();
-		return new Progress(percentageCompleted, percentageToRead, 0);
+		int percentageInProgress = booksInProgress * 100 / books.size();
+		return new Progress(percentageCompleted, percentageToRead, percentageInProgress);
+	}
+
+	public List<Book> findBooksByTitle(String text) {
+		return books.stream().filter(book -> book.getTitle().contains(text) || book.getTitle().equalsIgnoreCase(text)).collect(Collectors.toList());
 	}
 
 }

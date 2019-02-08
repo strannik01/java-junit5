@@ -50,6 +50,6 @@ public class Book implements Comparable<Book> {
 	}
 
 	public boolean isProgress() {
-		return false;
+		return startedReadingOn != null && finishedReadingOn == null;
 	}
 }
