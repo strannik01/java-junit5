@@ -14,7 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @Nested
 @ExtendWith(BooksParameterResolver.class)
 @DisplayName("search")
-public class BookShelfSeachSpec {
+public class BookShelfSearchSpec {
 	private BookShelf shelf;
 	private Book effectiveJava;
 	private Book codeComplete;
