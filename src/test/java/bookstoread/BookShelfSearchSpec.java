@@ -2,6 +2,7 @@ package bookstoread;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -37,4 +38,11 @@ public class BookShelfSearchSpec {
         List<Book> books = shelf.findBooksByTitle("code");
         assertThat(books.size()).isEqualTo(2);
     }
+	
+	@Test
+    @DisplayName("should find books with title containing text and published after specified date.")
+	void shouldFilterSearchedBooksBasedOnPublishedDate() {
+		List<Book> books = shelf.findBooksByTitle("code", b -> b.getPublishedOn().isBefore(LocalDate.of(2014, 12, 31)));
+		assertThat(books.size()).isEqualTo(2);
+	}
 }
