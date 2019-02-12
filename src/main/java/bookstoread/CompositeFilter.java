@@ -16,8 +16,7 @@ public class CompositeFilter implements BookFilter {
 	}
 
 	public void addFilter(final BookFilter bookFilter) {
-		// TODO Auto-generated method stub
-		
+		filters.add(bookFilter);
 	}
 
 }
