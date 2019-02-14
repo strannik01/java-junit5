@@ -48,6 +48,11 @@ public class BookFilterSpec {
 		@Test
 		@DisplayName("Composite criteria invokes multiple filters")
 		void shouldFilterOnMultiplesCriteria() {
+			/** 
+			 * Para evitar este engorroso test se puede construir un Mock, como MockedFilter
+			 * Esto aún así resulta molesto ya que cada vez que quieramos probar nuestra funcionalidad deberemos crear nuestros Mocks
+			 * Es posible usar Mockito para ejecutar dicha tarea. En otro ejemplo veremos esto.
+			 */
 			CompositeFilter compositeFilter = new CompositeFilter();
 			final Map<Integer, Boolean> invocationMap = new HashMap<>();
 			compositeFilter.addFilter(b -> {
@@ -56,11 +61,13 @@ public class BookFilterSpec {
 			});
 			assertTrue(compositeFilter.apply(cleanCode));
 			
+//			CompositeFilter compositeFilter = new CompositeFilter();
 //			compositeFilter.addFilter(b -> false);
 //			assertFalse(compositeFilter.apply(cleanCode));
 		}
 
 		@Test
+//		@Disabled
 		@DisplayName("Composite criteria does not invoke after first failure")
 		void shouldNotInvokeAfterFirstFailure() {
 			CompositeFilter compositeFilter = new CompositeFilter();
@@ -83,7 +90,7 @@ public class BookFilterSpec {
 		}
 
 		@Test
-		@Disabled
+//		@Disabled
 		@DisplayName("Composite criteria invokes all filters")
 		void shouldInvokeAllFilters() {
 			CompositeFilter compositeFilter = new CompositeFilter();
